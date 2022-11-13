@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="DescriptiveStatisticsDataRow" parent="AdwActionRow">
+    <child type="suffix">
+      <object class="GtkButton">
+        <property name="label" translatable="yes">Visualize</property>
+        <property name="valign">center</property>
+        <property name="visible" bind-source="DescriptiveStatisticsDataRow" bind-property="holds-data" bind-flags="sync-create"/>
+        <signal name="clicked" handler="on_visualize_clicked"/>
+      </object>
+    </child>
+
+    <child type="suffix">
+      <object class="GtkButton">
+        <property name="icon-name">trash-symbolic</property>
+        <property name="valign">center</property>
+        <property name="visible" bind-source="DescriptiveStatisticsDataRow" bind-property="holds-data" bind-flags="sync-create"/>
+        <signal name="clicked" handler="on_clear_clicked"/>
+      </object>
+    </child>
+
+    <child type="suffix">
+      <object class="GtkButton">
+        <property name="icon-name">clipboard-symbolic</property>
+        <property name="valign">center</property>
+        <property name="visible" bind-source="DescriptiveStatisticsDataRow" bind-property="holds-data" bind-flags="sync-create|invert-boolean"/>
+        <signal name="clicked" handler="on_clipboard_clicked"/>
+      </object>
+    </child>
+  </template>
+</interface>

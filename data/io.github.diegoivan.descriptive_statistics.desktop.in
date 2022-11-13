@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=descriptive-statistics
+Exec=descriptive-statistics
+Icon=io.github.diegoivan.descriptive_statistics
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
