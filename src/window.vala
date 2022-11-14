@@ -23,12 +23,30 @@ namespace DescriptiveStatistics {
     public class Window : Adw.ApplicationWindow {
         [GtkChild]
         private unowned DataRow data_row;
-
         [GtkChild]
         private unowned Gtk.CheckButton title_check;
+        [GtkChild]
+        private unowned ResultsList result_list;
+        [GtkChild]
+        private unowned Adw.Leaflet leaflet;
 
         public Window (Gtk.Application app) {
             Object (application: app);
+        }
+
+        private const ActionEntry[] WIN_ENTRIES = {
+            { "go-back", on_go_back },
+        };
+
+        construct {
+            var action_group = new SimpleActionGroup ();
+            action_group.add_action_entries (WIN_ENTRIES, this);
+
+            insert_action_group ("win", action_group);
+        }
+
+        private void on_go_back () {
+            leaflet.navigate (BACK);
         }
 
         [GtkCallback]
@@ -40,24 +58,10 @@ namespace DescriptiveStatistics {
             };
             builder.add_text (data_row.data);
 
-            print_results (builder.build ());
-        }
-
-        private void print_results (ListModel model) {
             var calculator = new DataCalculator ();
-            Results[] results = calculator.calculate (model);
+            result_list.add_results (calculator.calculate (builder.build ()));
 
-            for (int i = 0; i < results.length; i++) {
-                Results result = results[i];
-                print ("%s\n", result.title);
-
-                for (int j = 0; j < result.operation_results.get_n_items (); j++) {
-                    var operation = (Operation) result.operation_results.get_item (j);
-                    print ("%s = %f\n", operation.operation, operation.result);
-                }
-
-                print ("\n\n");
-            }
+            leaflet.navigate (FORWARD);
         }
     }
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="DescriptiveStatisticsResultPage" parent="AdwPreferencesGroup">
+    <child type="header-suffix">
+      <object class="GtkButton" id="copy_button">
+        <property name="label">Copy to clipboard</property>
+        <signal name="clicked" handler="on_copy_button_clicked"/>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkListBox" id="list_box">
+        <property name="margin-top">6</property>
+        <property name="selection-mode">none</property>
+        <style>
+          <class name="boxed-list"/>
+        </style>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -5,62 +5,108 @@
   <template class="DescriptiveStatisticsWindow" parent="AdwApplicationWindow">
     <property name="default-width">600</property>
     <property name="default-height">300</property>
+
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+      <object class="AdwLeaflet" id="leaflet">
+        <property name="can-navigate-forward">false</property>
+        <property name="can-navigate-back">false</property>
+        <property name="can-unfold">false</property>
+
         <child>
-          <object class="GtkHeaderBar" id="header_bar">
-            <child type="end">
-              <object class="GtkMenuButton">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="menu-model">primary_menu</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwClamp">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="AdwPreferencesGroup">
-                <property name="title">Data</property>
-                <child>
-                  <object class="DescriptiveStatisticsDataRow" id="data_row">
+              <object class="GtkHeaderBar" id="header_bar">
+                <child type="end">
+                  <object class="GtkMenuButton">
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="menu-model">primary_menu</property>
                   </object>
                 </child>
-
+              </object>
+            </child>
+            <child>
+              <object class="AdwClamp">
                 <child>
-                  <object class="AdwActionRow">
-                    <property name="title">Use First Row as Title</property>
-                    <property name="activatable-widget">title_check</property>
-                    <child type="suffix">
-                      <object class="GtkCheckButton" id="title_check">
-                        <property name="valign">center</property>
+                  <object class="AdwPreferencesGroup">
+                    <property name="title">Data</property>
+                    <child>
+                      <object class="DescriptiveStatisticsDataRow" id="data_row">
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Use First Row as Title</property>
+                        <property name="activatable-widget">title_check</property>
+                        <child type="suffix">
+                          <object class="GtkCheckButton" id="title_check">
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
                 </child>
               </object>
             </child>
+
+            <child>
+              <object class="GtkButton" id="operate_button">
+                <property name="label">Calculate</property>
+                <property name="halign">center</property>
+                <property name="hexpand">true</property>
+                <property name="sensitive" bind-source="data_row" bind-property="holds-data" bind-flags="sync-create"/>
+                <signal name="clicked" handler="on_operate_button_clicked"/>
+
+                <style>
+                  <class name="pill"/>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+
           </object>
         </child>
 
         <child>
-          <object class="GtkButton" id="operate_button">
-            <property name="label">Calculate</property>
-            <property name="halign">center</property>
-            <property name="hexpand">true</property>
-            <property name="sensitive" bind-source="data_row" bind-property="holds-data" bind-flags="sync-create"/>
-            <signal name="clicked" handler="on_operate_button_clicked"/>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
 
-            <style>
-              <class name="pill"/>
-              <class name="suggested-action"/>
-            </style>
+            <child>
+              <object class="GtkHeaderBar">
+                <child type="start">
+                  <object class="GtkButton">
+                    <property name="icon-name">left-symbolic</property>
+                    <property name="action-name">win.go-back</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="propagate-natural-height">true</property>
+                <property name="propagate-natural-width">true</property>
+
+                <child>
+                  <object class="AdwClamp">
+                    <child>
+                      <object class="DescriptiveStatisticsResultsList" id="result_list">
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
           </object>
         </child>
 
+
       </object>
     </child>
+
   </template>
   <menu id="primary_menu">
     <section>

@@ -120,15 +120,3 @@ public class DescriptiveStatistics.Operation : Object {
     public string operation { get; set; default = ""; }
     public double result { get; set; default = 0; }
 }
-
-public class DescriptiveStatistics.Results {
-    public string title { get; set; default = ""; }
-    public ListModel operation_results { get; set; }
-
-    public Results (string title, ListModel results)
-        requires (results.get_item_type () == typeof(Operation))
-    {
-        this.title = title;
-        this.operation_results = results;
-    }
-}

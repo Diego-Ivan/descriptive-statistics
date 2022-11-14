@@ -4,9 +4,11 @@
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
     <file preprocess="xml-stripblanks">gtk/data-row.ui</file>
+    <file preprocess="xml-stripblanks">gtk/result-page.ui</file>
   </gresource>
 
-  <gresource prefix="/io/github/diegoivan/descriptive_statistics/icons/scalable/actions/">
+  <gresource prefix="/io/github/diegoivan/descriptive_statistics/icons/scalable/actions">
     <file preprocess="xml-stripblanks" alias="clipboard-symbolic.svg">icons/clipboard-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="left-symbolic.svg">icons/left-symbolic.svg</file>
   </gresource>
 </gresources>

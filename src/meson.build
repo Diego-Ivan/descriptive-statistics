@@ -7,14 +7,17 @@ descriptive_statistics_sources = [
   # Widgets
   'Widgets/DataRow.vala',
   'Widgets/VisualizationGrid.vala',
+  'Widgets/ResultsList.vala',
+  'Widgets/ResultPage.vala',
 
   # Services
   'Services/ColumnFactory.vala',
 
   # Models
-  'Models/Column.vala',
-  'Models/Row.vala',
   'Models/DataCalculator.vala',
+  'Models/Column.vala',
+  'Models/Results.vala',
+  'Models/Row.vala',
 
   # Operators
   'Models/Operators/AbstractOperator.vala',
